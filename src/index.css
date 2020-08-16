@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #e0e5ec;
 }
 
 code {
@@ -13,22 +14,97 @@ code {
 }
 
 .box {
-  border: 1px solid black;
   width: 100px;
   height: 100px;
+  display: flex;
+  flex-direction: column;
   margin: 2rem;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background: transparent;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: #e0e5ec;
+  box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6),
+    -9px -9px 16px rgba(255, 255, 255, 0.5);
+  transition: all 0.2s;
+}
+
+.box button {
+  margin: 0 0.2rem;
+  background: transparent;
+  width: 50%;
+  transition: all 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.box button:hover {
+  margin: 0 0.2rem;
+  background: #fff;
+  width: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.box p {
+  margin: 5px;
 }
 
 .container {
-  /* max-width: 80%; */
   border: 1px solid #ccc;
   margin: 2rem;
   display: flex;
-  justify-content: center;
-  /* height: 600px;
-  width: 600px; */
+  height: 600px;
+  flex-direction: column;
+  display: flex;
+  padding: 60px 30px;
+  border-radius: 30px;
+  background: transparent;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 3px 3px 7px rgba(136, 165, 191, 0.48),
+    inset -3px -3px 7px #ffffff;
+}
+
+.contianer i {
+  text-shadow: 1px 1px 1px #d6e1ef99, 0 0 0 #000, 1px 1px 1px #d6e1ef00;
 }
 
 .boxesContainer {
   display: flex;
+  height: -webkit-fill-available;
+}
+
+.basic-slide {
+  box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6),
+    -9px -9px 16px rgba(255, 255, 255, 0.5),
+    inset 3px 3px 7px rgba(136, 165, 191, 0.48), inset -3px -3px 7px #ffffff;
+  background: linear-gradient(
+    318.32deg,
+    rgba(163, 177, 198, 0.1) 0%,
+    rgba(163, 177, 198, 0.1) 55%,
+    rgba(163, 177, 198, 0.25) 100%
+  );
+  outline: none;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 15px;
+  border-radius: 30px;
+  position: relative;
+  background: transparent;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.toggleButton {
+  max-width: 60px;
+  height: 60px;
+  justify-content: center;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin: 2rem;
 }

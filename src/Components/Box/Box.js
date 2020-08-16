@@ -11,8 +11,7 @@ const Box = () => {
 
   const [selected, setSelected] = useState();
 
-  const [xCord, setX] = useState(5);
-  const [yCord, setY] = useState(0);
+  const [open, setOpen] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,45 +29,47 @@ const Box = () => {
 
   useEffect(() => {
     const handleDel = (event) => {
-      if (event.keyCode === 46) {
-        // const newBoxes = [...boxes];
-        const newBox = boxes.filter((t) => t.id !== selected);
-        setBoxes(newBox);
-      }
+      if (open === true) {
+        if (event.keyCode === 46) {
+          // const newBoxes = [...boxes];
+          const newBox = boxes.filter((t) => t.id !== selected);
+          setBoxes(newBox);
+        }
 
-      if (event.keyCode === 68) {
-        // let objIndex = boxes.findIndex((obj) => obj.id === selected);
-        // boxes[objIndex].x = xCord;
-        // const newX = boxes[objIndex].x + 10;
-        setBoxes((prev) =>
-          prev.map((box) =>
-            box.id === selected ? { ...box, x: box.x + 10 } : box
-          )
-        );
-      }
+        if (event.keyCode === 68) {
+          // let objIndex = boxes.findIndex((obj) => obj.id === selected);
+          // boxes[objIndex].x = xCord;
+          // const newX = boxes[objIndex].x + 10;
+          setBoxes((prev) =>
+            prev.map((box) =>
+              box.id === selected ? { ...box, x: box.x + 10 } : box
+            )
+          );
+        }
 
-      if (event.keyCode === 65) {
-        setBoxes((prev) =>
-          prev.map((box) =>
-            box.id === selected ? { ...box, x: box.x - 10 } : box
-          )
-        );
-      }
+        if (event.keyCode === 65) {
+          setBoxes((prev) =>
+            prev.map((box) =>
+              box.id === selected ? { ...box, x: box.x - 10 } : box
+            )
+          );
+        }
 
-      if (event.keyCode === 83) {
-        setBoxes((prev) =>
-          prev.map((box) =>
-            box.id === selected ? { ...box, y: box.y + 10 } : box
-          )
-        );
-      }
+        if (event.keyCode === 83) {
+          setBoxes((prev) =>
+            prev.map((box) =>
+              box.id === selected ? { ...box, y: box.y + 10 } : box
+            )
+          );
+        }
 
-      if (event.keyCode === 87) {
-        setBoxes((prev) =>
-          prev.map((box) =>
-            box.id === selected ? { ...box, y: box.y - 10 } : box
-          )
-        );
+        if (event.keyCode === 87) {
+          setBoxes((prev) =>
+            prev.map((box) =>
+              box.id === selected ? { ...box, y: box.y - 10 } : box
+            )
+          );
+        }
       }
     };
     window.addEventListener("keydown", handleDel);
@@ -76,11 +77,22 @@ const Box = () => {
     return () => {
       window.removeEventListener("keydown", handleDel);
     };
-  }, [boxes, selected, xCord]);
+  }, [boxes, open, selected]);
 
   return (
     <>
       {/* {x} */}
+      <button
+        aria-expanded={open === true ? "true" : "false"}
+        className="toggleButton"
+        onClick={() => setOpen(!open)}
+        style={{
+          backgroundColor: open === false ? "#838383" : "",
+          color: open === false ? "#ffffff" : "#000",
+        }}
+      >
+        Toggle Buttons
+      </button>
       <div className="boxesContainer">
         {boxes.length === 0 && <p>Add Boxes</p>}
         {boxes.map((id, index) => (
@@ -93,14 +105,15 @@ const Box = () => {
             }}
             style={{
               backgroundColor: id.id === selected ? "#144bae" : "",
-              color: id.id === selected ? "#ccc" : "",
+              color: id.id === selected ? "#fff" : "",
               transform: `translate(${id.x}px, ${id.y}px)`,
-              zIndex: id.id,
             }}
           >
             {/* <p>{id.id}</p> */}
             <p>{id.title}</p>
-            {id.x},{id.y}
+            <p>
+              {id.x},{id.y}
+            </p>
             <button onClick={() => removeBox(index)}>x</button>
           </div>
         ))}
@@ -109,14 +122,13 @@ const Box = () => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          className="input"
+          className="basic-slide"
+          id="name"
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder={"Add a box"}
         />
       </form>
-
-      {/* <button onClick={handleW}>W</button> */}
     </>
   );
 };
