@@ -20,9 +20,15 @@ code {
 }
 
 .container {
-  max-width: 80%;
+  /* max-width: 80%; */
   border: 1px solid #ccc;
   margin: 2rem;
   display: flex;
   justify-content: center;
+  /* height: 600px;
+  width: 600px; */
+}
+
+.boxesContainer {
+  display: flex;
 }
